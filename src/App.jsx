@@ -2,22 +2,26 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentURL, setURL] = useState("./src/assets/default.jpg");
+
+  function addImage(url) {
+    if (url == "") return;
+
+    setURL(url);
+  }
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <h1 className="title">Input Image</h1>
+      <div className="box">
+        <input
+          onChange={(e) => addImage(e.target.value)}
+          type="text"
+          placeholder="Input URL"
+        ></input>
+        <h3>Preview</h3>
+        <img className="image" src={currentURL}></img>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

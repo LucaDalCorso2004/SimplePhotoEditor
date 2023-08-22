@@ -17,22 +17,21 @@ header {
   height: 10%;
 
   background-color: rgb(14, 87, 146);
-
-
 }
 
 main {
-
   margin-top: 5%;
   background-color: #000000;
   height: 60%;
   width: 100%;
 }
 
-.w {
-  margin-top: 5%;
-  margin-left: 40%;
+.image {
   height: 15rem;
   width: 15rem;
   background-color: white;
+}
+
+.box {
+  margin-left: 10%;
 }
