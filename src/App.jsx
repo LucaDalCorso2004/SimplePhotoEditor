@@ -30,11 +30,11 @@ function App() {
 
       <div className="box">
         <Slider
-          onChange={(e) => {
-            setFilter(e.target.value);
+          handleValueChange={(value) => {
+            setFilter(value);
           }}
         />
-        <p>{currentFilter}</p>
+        <p>Brightness: {currentFilter}%</p>
       </div>
     </>
   );
