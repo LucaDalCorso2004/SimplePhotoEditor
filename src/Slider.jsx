@@ -1,11 +1,11 @@
 // eslint-disable-next-line react/prop-types
-export function Slider({ handleValueChange }) {
+export function Slider({ handleValueChange, defaultValue, maxValue, minValue }) {
   return (
     <input
       type="range"
-      min="0"
-      max="100"
-      defaultValue="100"
+      min={minValue}
+      max={maxValue}
+      defaultValue={defaultValue}
       onChange={(e) => handleValueChange(e.target.value)}
     />
   );
