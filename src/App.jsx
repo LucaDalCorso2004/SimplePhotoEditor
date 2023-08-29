@@ -4,15 +4,16 @@ import { Slider } from "./Slider.jsx";
 
 function App() {
   const [currentURL, setURL] = useState("./src/assets/default.jpg");
-  const [currentFilter, setFilter] = useState(100);
+  const [currentBrightness, setBrightness] = useState(100);
+  const [currentSepia, setSepia] = useState(0);
 
   function addImage(url) {
     if (url == "") return;
     setURL(url);
   }
 
-  const containerStyle = {
-    filter: `brightness(${currentFilter}%)`,
+  const filterStyle = {
+    filter: `brightness(${currentBrightness}%) sepia(${currentSepia}%)`,
   };
 
   return (
@@ -25,16 +26,23 @@ function App() {
           placeholder="Input URL"
         ></input>
         <h3>Preview</h3>
-        <img className="image" src={currentURL} style={containerStyle}></img>
+        <img className="image" src={currentURL} style={filterStyle}></img>
       </div>
 
       <div className="box">
         <Slider
           handleValueChange={(value) => {
-            setFilter(value);
+            setBrightness(value);
           }}
         />
-        <p>Brightness: {currentFilter}%</p>
+        <p>Brightness: {currentBrightness}%</p>
+
+        <Slider
+          handleValueChange={(value) => {
+            setSepia(value);
+          }}
+        />
+        <p>Sepia: {currentSepia}%</p>
       </div>
     </>
   );
