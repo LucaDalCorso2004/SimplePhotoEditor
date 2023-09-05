@@ -56,7 +56,7 @@ function App() {
   return (
     <>
       <div className="editor">
-        <div className="box">
+        <div className="section">
           <h2 className="sectionTitle">Input Image</h2>
           <input
             onChange={(e) => addImage(e.target.value)}
@@ -73,30 +73,32 @@ function App() {
           />
         </div>
 
-        <div className="box">
+        <div className="section">
           <h2 className="sectionTitle">Filter Selection</h2>
-          {Object.entries(filters).map(([filter, value]) => (
-            <div className="sliderBox" key={filter}>
-              <Slider
-                handleValueChange={(newValue) => {
-                  handleFilterChange(filter, newValue);
-                }}
-                defaultValue={value}
-                maxValue={
-                  filter === "blur" || filter === "hueRotate" ? 200 : 100
-                }
-                minValue={0}
-              />
-              <p className="sliderDesc">
-                {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
-                {filter === "blur"
-                  ? "px"
-                  : filter === "hueRotate"
-                  ? "deg"
-                  : "%"}
-              </p>
-            </div>
-          ))}
+          <div className="filterSection">
+            {Object.entries(filters).map(([filter, value]) => (
+              <div className="filterItem" key={filter}>
+                <Slider
+                  handleValueChange={(newValue) => {
+                    handleFilterChange(filter, newValue);
+                  }}
+                  defaultValue={value}
+                  maxValue={
+                    filter === "hueRotate" || filter === "saturate" ? 200 : 100
+                  }
+                  minValue={0}
+                />
+                <p className="sliderDesc">
+                  {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
+                  {filter === "blur"
+                    ? "px"
+                    : filter === "hueRotate"
+                    ? "deg"
+                    : "%"}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

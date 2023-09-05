@@ -28,6 +28,7 @@ footer a {
   padding-top: 1.5rem;
   font-size: 0.8rem;
   margin: 0;
+  color: white;
 }
 
 body {
@@ -50,40 +51,43 @@ main {
 .image {
   flex: 1;
   height: auto;
-  width: 80%;
-  background-color: white;
+  width: 85%;
 }
 
 .textinput {
   height: 1.5rem;
   font-size: 1.2rem;
-  width: 80%;
+  width: 85%;
 }
 
-.box {
+.section {
   flex: 1;
   width: 40%;
   padding-left: 5%;
 }
 
-.filterBox {
+.filterSection {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 0 1rem 0 1rem;
 }
 
-.sliderBox {
-  flex: 1;
+.filterItem {
+  flex: 1 0 40%;
   border: medium inset rgba(0, 0, 0, 0.527);
   background-color: rgba(0, 0, 0, 0.301);
   padding: 1rem;
   margin: 0.5rem;
-  width: 12rem;
+}
+
+.filterItem:last-child {
+  flex: 2;
 }
 
 .slider {
   margin: 0;
-  width: 10rem;
+  width: 90%;
 }
 
 .sliderDesc {
