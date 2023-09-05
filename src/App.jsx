@@ -55,39 +55,49 @@ function App() {
 
   return (
     <>
-      <h1 className="title">Input Image</h1>
-      <div className="box">
-        <input
-          onChange={(e) => addImage(e.target.value)}
-          type="text"
-          placeholder="Input URL"
-        ></input>
-        <h3>Preview</h3>
-        <img
-          className="image"
-          src={currentURL}
-          style={filterStyle}
-          alt="Filtered"
-        />
-      </div>
+      <div className="editor">
+        <div className="box">
+          <h2 className="sectionTitle">Input Image</h2>
+          <input
+            onChange={(e) => addImage(e.target.value)}
+            type="text"
+            placeholder="Input URL"
+            className="textinput"
+          ></input>
+          <h2 className="sectionTitle">Preview</h2>
+          <img
+            className="image"
+            src={currentURL}
+            style={filterStyle}
+            alt="Not a valid URL!"
+          />
+        </div>
 
-      <div className="box">
-        {Object.entries(filters).map(([filter, value]) => (
-          <div key={filter}>
-            <Slider
-              handleValueChange={(newValue) => {
-                handleFilterChange(filter, newValue);
-              }}
-              defaultValue={value}
-              maxValue={filter === "blur" || filter === "hueRotate" ? 200 : 100}
-              minValue={0}
-            />
-            <p>
-              {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
-              {filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"}
-            </p>
-          </div>
-        ))}
+        <div className="box">
+          <h2 className="sectionTitle">Filter Selection</h2>
+          {Object.entries(filters).map(([filter, value]) => (
+            <div className="sliderBox" key={filter}>
+              <Slider
+                handleValueChange={(newValue) => {
+                  handleFilterChange(filter, newValue);
+                }}
+                defaultValue={value}
+                maxValue={
+                  filter === "blur" || filter === "hueRotate" ? 200 : 100
+                }
+                minValue={0}
+              />
+              <p className="sliderDesc">
+                {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
+                {filter === "blur"
+                  ? "px"
+                  : filter === "hueRotate"
+                  ? "deg"
+                  : "%"}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
