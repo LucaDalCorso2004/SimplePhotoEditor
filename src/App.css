@@ -70,19 +70,15 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 0 1rem 0 1rem;
+  margin: 0 1rem;
 }
 
 .filterItem {
-  flex: 1 0 40%;
+  flex: 40% 0;
   border: medium inset rgba(0, 0, 0, 0.527);
   background-color: rgba(0, 0, 0, 0.301);
   padding: 1rem;
   margin: 0.5rem;
-}
-
-.filterItem:last-child {
-  flex: 2;
 }
 
 .slider {
