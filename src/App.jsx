@@ -60,7 +60,7 @@ function App() {
     }));
   };
 
-  async function downloadTest() {
+  async function downloadImage() {
     const imageSrc = document.getElementById(`preview`);
     const dataUrl = await htmlToImage.toPng(imageSrc);
 
@@ -101,7 +101,7 @@ function App() {
             alt="No image found"
             id="preview"
           />
-          <button onClick={() => downloadTest()}>Download Image</button>
+          <button onClick={() => downloadImage()}>Download Image</button>
         </div>
 
         <div className="section">
