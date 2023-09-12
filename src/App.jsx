@@ -45,7 +45,8 @@ function App() {
     filter: Object.entries(filters)
       .map(
         ([filter, value]) =>
-          `${filterFunctions[filter]}(${value}${filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"
+          `${filterFunctions[filter]}(${value}${
+            filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"
           })`
       )
       .join(" "),
@@ -58,10 +59,8 @@ function App() {
     }));
   };
 
-
   return (
     <>
-
       <div className="editor">
         <div className="section">
           <h2>Add Image</h2>
@@ -84,11 +83,10 @@ function App() {
             src={currentURL}
             style={filterStyle}
             alt="No image found"
+            id="preview"
           />
-                <button onClick={() => takescreenshot()} >Takescreenshot</button>
+          <button onClick={() => takescreenshot()}>Download Image!</button>
         </div>
-
-
 
         <div className="section">
           <h2>Filter Selection</h2>
@@ -125,19 +123,18 @@ function App() {
     </>
   );
 
-
   function takescreenshot() {
-    html2canvas(document.getElementById('preview')).then((canvas) => {
+    // eslint-disable-next-line no-undef
+    html2canvas(document.getElementById("preview")).then((canvas) => {
       handleCanvas(canvas);
     });
   }
 
   function handleCanvas(canvas) {
-    const dataURL = canvas.toDataURL('image/png');
-    const a = document.createElement('a');
+    const dataURL = canvas.toDataURL("image/png");
+    const a = document.createElement("a");
     a.href = dataURL;
-    a.download = 'screenshot.png';
-
+    a.download = "screenshot.png";
 
     document.body.appendChild(a);
     a.click();
