@@ -97,7 +97,11 @@ function App() {
                   }}
                   defaultValue={value}
                   maxValue={
-                    filter === "hueRotate" || filter === "saturate" ? 200 : 100
+                    filter === "hueRotate"
+                      ? 360
+                      : filter === "saturate"
+                      ? 200
+                      : 100
                   }
                   minValue={0}
                 />
