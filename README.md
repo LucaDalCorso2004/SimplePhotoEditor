@@ -7,3 +7,5 @@
 
 - `npm install`
 - `npm run dev`
+
+Icon from: https://www.flaticon.com/free-icons/paint-brush
