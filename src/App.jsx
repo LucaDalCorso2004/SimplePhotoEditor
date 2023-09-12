@@ -35,10 +35,10 @@ function App() {
     setURL(url);
   }
 
-  function uploadImage(file) {
-    if (file) {
-      setURL(URL.createObjectURL(file));
-    }
+  function uploadImage(target) {
+    const [file] = target.files; // take files out of the input
+    const fileURL = URL.createObjectURL(file); // create URL from file list
+    setURL(fileURL);
   }
 
   const filterStyle = {
@@ -67,8 +67,7 @@ function App() {
           <input
             accept="image/*"
             type="file"
-            id="uploadImage"
-            onChange={(e) => uploadImage(e.target.files)}
+            onChange={(e) => uploadImage(e.target)}
             className="textinput"
           />
           <p>or</p>
