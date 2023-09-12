@@ -39,8 +39,7 @@ function App() {
     filter: Object.entries(filters)
       .map(
         ([filter, value]) =>
-          `${filterFunctions[filter]}(${value}${
-            filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"
+          `${filterFunctions[filter]}(${value}${filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"
           })`
       )
       .join(" "),
@@ -53,6 +52,7 @@ function App() {
     }));
   };
 
+
   return (
     <>
       <h1 className="title">Input Image</h1>
@@ -64,12 +64,14 @@ function App() {
         ></input>
         <h3>Preview</h3>
         <img
+          id="preview"
           className="image"
           src={currentURL}
           style={filterStyle}
           alt="Filtered"
         />
       </div>
+      <button onClick={() => takescreenshot()} >Takescreenshot</button>
 
       <div className="box">
         {Object.entries(filters).map(([filter, value]) => (
@@ -91,6 +93,26 @@ function App() {
       </div>
     </>
   );
+
+
+  function takescreenshot() {
+    html2canvas(document.getElementById('preview')).then((canvas) => {
+      handleCanvas(canvas);
+    });
+  }
+
+  function handleCanvas(canvas) {
+    const dataURL = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = dataURL;
+    a.download = 'screenshot.png';
+
+
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+  }
 }
 
 export default App;
