@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Slider } from "./Slider.jsx";
+import * as htmlToImage from "html-to-image";
 
 const defaultFilters = {
   brightness: 100,
@@ -59,6 +60,21 @@ function App() {
     }));
   };
 
+  async function downloadTest() {
+    const imageSrc = document.getElementById(`preview`);
+    const dataUrl = await htmlToImage.toPng(imageSrc);
+
+    // download image
+    const link = document.createElement("a");
+    const urlSlice = imageSrc.src.split("/");
+    console.log(urlSlice);
+    const fileName = urlSlice[urlSlice.length - 1];
+
+    link.download = `filtered-${fileName}`;
+    link.href = dataUrl;
+    link.click();
+  }
+
   return (
     <>
       <div className="editor">
@@ -85,7 +101,7 @@ function App() {
             alt="No image found"
             id="preview"
           />
-          <button onClick={() => takescreenshot()}>Download Image!</button>
+          <button onClick={() => downloadTest()}>Download Image</button>
         </div>
 
         <div className="section">
@@ -122,25 +138,6 @@ function App() {
       </div>
     </>
   );
-
-  function takescreenshot() {
-    // eslint-disable-next-line no-undef
-    html2canvas(document.getElementById("preview")).then((canvas) => {
-      handleCanvas(canvas);
-    });
-  }
-
-  function handleCanvas(canvas) {
-    const dataURL = canvas.toDataURL("image/png");
-    const a = document.createElement("a");
-    a.href = dataURL;
-    a.download = "screenshot.png";
-
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-  }
 }
 
 export default App;
