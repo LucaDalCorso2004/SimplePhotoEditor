@@ -99,7 +99,7 @@ function App() {
                   maxValue={
                     filter === "hueRotate"
                       ? 360
-                      : filter === "saturate"
+                      : filter === "saturate" || filter === "brightness"
                       ? 200
                       : 100
                   }
