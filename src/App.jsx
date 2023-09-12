@@ -85,14 +85,14 @@ function App() {
             accept="image/*"
             type="file"
             onChange={(e) => uploadImage(e.target)}
-            className="textinput"
+            className="input"
           />
           <p>or</p>
           <input
             onChange={(e) => addImage(e.target.value)}
             type="text"
             placeholder="Input URL"
-            className="textinput"
+            className="input"
           ></input>
           <h2 className="sectionTitle">Preview</h2>
           <img
@@ -102,7 +102,9 @@ function App() {
             alt="No image found"
             id="preview"
           />
-          <button onClick={() => downloadImage()}>Download Image</button>
+          <button className="input" onClick={() => downloadImage()}>
+            Download Image
+          </button>
         </div>
 
         <div className="section">

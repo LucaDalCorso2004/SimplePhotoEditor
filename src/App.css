@@ -55,10 +55,10 @@ main {
   border-radius: 15px;
 }
 
-.textinput {
+.input {
   height: 1.5rem;
-  font-size: 1.2rem;
   width: 85%;
+  font-size: 1rem;
 }
 
 .section {
