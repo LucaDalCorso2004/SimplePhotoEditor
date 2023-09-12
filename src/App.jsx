@@ -61,15 +61,16 @@ function App() {
   };
 
   async function downloadImage() {
+    // convert to png
     const imageSrc = document.getElementById(`preview`);
     const dataUrl = await htmlToImage.toPng(imageSrc);
 
-    // download image
-    const link = document.createElement("a");
+    // get file name
     const urlSlice = imageSrc.src.split("/");
-    console.log(urlSlice);
     const fileName = urlSlice[urlSlice.length - 1];
 
+    // download image
+    const link = document.createElement("a");
     link.download = `filtered-${fileName}`;
     link.href = dataUrl;
     link.click();
