@@ -35,6 +35,12 @@ function App() {
     setURL(url);
   }
 
+  function uploadImage(target) {
+    const [file] = target.files; // take files out of the input
+    const fileURL = URL.createObjectURL(file); // create URL from file list
+    setURL(fileURL);
+  }
+
   const filterStyle = {
     filter: Object.entries(filters)
       .map(
@@ -55,41 +61,66 @@ function App() {
 
   return (
     <>
-      <h1 className="title">Input Image</h1>
-      <div className="box">
-        <input
-          onChange={(e) => addImage(e.target.value)}
-          type="text"
-          placeholder="Input URL"
-        ></input>
-        <h3>Preview</h3>
-        <img
-          id="preview"
-          className="image"
-          src={currentURL}
-          style={filterStyle}
-          alt="Filtered"
-        />
-      </div>
-      <button onClick={() => takescreenshot()} >Takescreenshot</button>
 
-      <div className="box">
-        {Object.entries(filters).map(([filter, value]) => (
-          <div key={filter}>
-            <Slider
-              handleValueChange={(newValue) => {
-                handleFilterChange(filter, newValue);
-              }}
-              defaultValue={value}
-              maxValue={filter === "blur" || filter === "hueRotate" ? 200 : 100}
-              minValue={0}
-            />
-            <p>
-              {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
-              {filter === "blur" ? "px" : filter === "hueRotate" ? "deg" : "%"}
-            </p>
+      <div className="editor">
+        <div className="section">
+          <h2>Add Image</h2>
+          <input
+            accept="image/*"
+            type="file"
+            onChange={(e) => uploadImage(e.target)}
+            className="textinput"
+          />
+          <p>or</p>
+          <input
+            onChange={(e) => addImage(e.target.value)}
+            type="text"
+            placeholder="Input URL"
+            className="textinput"
+          ></input>
+          <h2 className="sectionTitle">Preview</h2>
+          <img
+            className="image"
+            src={currentURL}
+            style={filterStyle}
+            alt="No image found"
+          />
+                <button onClick={() => takescreenshot()} >Takescreenshot</button>
+        </div>
+
+
+
+        <div className="section">
+          <h2>Filter Selection</h2>
+          <div className="filterSection">
+            {Object.entries(filters).map(([filter, value]) => (
+              <div className="filterItem" key={filter}>
+                <Slider
+                  handleValueChange={(newValue) => {
+                    handleFilterChange(filter, newValue);
+                  }}
+                  defaultValue={value}
+                  maxValue={
+                    filter === "hueRotate"
+                      ? 360
+                      : filter === "saturate" || filter === "brightness"
+                      ? 200
+                      : 100
+                  }
+                  minValue={0}
+                />
+                <p className="sliderDesc">
+                  {filter.charAt(0).toUpperCase() + filter.slice(1)}: {value}
+                  {filter === "blur"
+                    ? "px"
+                    : filter === "hueRotate"
+                    ? "deg"
+                    : "%"}
+                </p>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </>
   );
