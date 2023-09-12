@@ -35,6 +35,12 @@ function App() {
     setURL(url);
   }
 
+  function uploadImage(target) {
+    const [file] = target.files; // take files out of the input
+    const fileURL = URL.createObjectURL(file); // create URL from file list
+    setURL(fileURL);
+  }
+
   const filterStyle = {
     filter: Object.entries(filters)
       .map(
@@ -57,7 +63,14 @@ function App() {
     <>
       <div className="editor">
         <div className="section">
-          <h2 className="sectionTitle">Input Image</h2>
+          <h2>Add Image</h2>
+          <input
+            accept="image/*"
+            type="file"
+            onChange={(e) => uploadImage(e.target)}
+            className="textinput"
+          />
+          <p>or</p>
           <input
             onChange={(e) => addImage(e.target.value)}
             type="text"
@@ -74,7 +87,7 @@ function App() {
         </div>
 
         <div className="section">
-          <h2 className="sectionTitle">Filter Selection</h2>
+          <h2>Filter Selection</h2>
           <div className="filterSection">
             {Object.entries(filters).map(([filter, value]) => (
               <div className="filterItem" key={filter}>
