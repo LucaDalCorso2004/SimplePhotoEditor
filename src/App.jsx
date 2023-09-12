@@ -82,7 +82,7 @@ function App() {
             className="image"
             src={currentURL}
             style={filterStyle}
-            alt="Not a valid URL!"
+            alt="No image found"
           />
         </div>
 
